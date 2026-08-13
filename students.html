@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Students · Rohtak Public School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">Rohtak Public School</div>
+    <div class="brand-sub">Student Management</div>
+
+    <nav>
+      <a href="dashboard.html" class="nav-item"><span class="dot"></span>Dashboard</a>
+      <a href="students.html" class="nav-item active"><span class="dot"></span>Students</a>
+      <a href="attendance.html" class="nav-item"><span class="dot"></span>Attendance</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">Log out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1>Students</h1>
+        <div class="sub" id="countLabel">Loading…</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="toolbar">
+          <input type="text" id="searchInput" placeholder="Search by name or roll no." />
+          <select id="classFilter">
+            <option value="">All classes</option>
+          </select>
+        </div>
+        <button class="btn-accent" id="addBtn">+ Add student</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Roll No.</th>
+            <th>Class</th>
+            <th>Gender</th>
+            <th>Parent contact</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="studentsBody">
+          <tr><td colspan="6" class="loading">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Add / Edit modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Add student</h3>
+    <form id="studentForm">
+      <input type="hidden" id="studentId" />
+      <div class="modal-grid">
+        <div class="field full">
+          <label for="name">Full name *</label>
+          <input type="text" id="name" required placeholder="e.g. Priya Sharma" />
+        </div>
+        <div class="field">
+          <label for="rollNo">Roll number</label>
+          <input type="text" id="rollNo" placeholder="e.g. 24" />
+        </div>
+        <div class="field">
+          <label for="gender">Gender</label>
+          <select id="gender">
+            <option value="">Select</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="studentClass">Class</label>
+          <input type="text" id="studentClass" placeholder="e.g. 9" />
+        </div>
+        <div class="field">
+          <label for="section">Section</label>
+          <input type="text" id="section" placeholder="e.g. A" />
+        </div>
+        <div class="field">
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" />
+        </div>
+        <div class="field">
+          <label for="admissionDate">Admission date</label>
+          <input type="date" id="admissionDate" />
+        </div>
+        <div class="field">
+          <label for="parentName">Parent / Guardian name</label>
+          <input type="text" id="parentName" />
+        </div>
+        <div class="field">
+          <label for="parentPhone">Parent phone</label>
+          <input type="tel" id="parentPhone" placeholder="e.g. 98xxxxxxx0" />
+        </div>
+        <div class="field full">
+          <label for="address">Address</label>
+          <input type="text" id="address" placeholder="e.g. Model Town, Rohtak" />
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" id="cancelBtn">Cancel</button>
+        <button type="submit" class="btn-accent" id="saveBtn">Save student</button>
+      </div>
+      <div class="form-msg" id="modalMsg"></div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/students.js"></script>
+</body>
+</html>
